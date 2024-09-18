@@ -1,17 +1,15 @@
-﻿using System.Xml.Linq;
+﻿using System.Xml.Serialization;
 
 namespace weather_monitoring_and_reporting_service;
 public class XmlWeatherParser : IWeatherParserStrategy
 {
     public WeatherData? ParseWeatherData(string input)
     {
-        var xmlElement = XDocument.Parse(input);
-        var weatherData = new WeatherData
+        XmlSerializer serializer = new XmlSerializer(typeof(WeatherData));
+
+        using (TextReader reader = new StringReader(input))
         {
-            Location = xmlElement.Root.Element("Location").Value,
-            Temperature = decimal.Parse(xmlElement.Root.Element("Temperature").Value),
-            Humidity = decimal.Parse(xmlElement.Root.Element("Humidity").Value)
-        };
-        return weatherData;
+            return (WeatherData)serializer.Deserialize(reader);
+        }
     }
 }
