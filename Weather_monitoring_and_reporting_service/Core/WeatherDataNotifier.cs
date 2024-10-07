@@ -1,6 +1,6 @@
-﻿using weather_monitoring_and_reporting_service.Bots.Interfaces;
+﻿using WeatherService.Bots.Interfaces;
 
-namespace weather_monitoring_and_reporting_service.Core;
+namespace WeatherService.Core;
 public class WeatherDataNotifier : IWeatherDataNotifier
 {
     private readonly List<IWeatherBotService> _observers = new List<IWeatherBotService>();

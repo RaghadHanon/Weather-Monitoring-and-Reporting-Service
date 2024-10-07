@@ -1,6 +1,6 @@
-﻿using weather_monitoring_and_reporting_service.Bots.Interfaces;
+﻿using WeatherService.Bots.Interfaces;
 
-namespace weather_monitoring_and_reporting_service.Bots.SnowBot;
+namespace WeatherService.Bots.SnowBot;
 public class SnowBot : IWeatherBot
 {
     public SnowBot() { }

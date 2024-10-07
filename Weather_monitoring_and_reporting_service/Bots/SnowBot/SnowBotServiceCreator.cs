@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using weather_monitoring_and_reporting_service.Bots.Factories;
-using weather_monitoring_and_reporting_service.Bots.Interfaces;
+using WeatherService.Bots.Factories;
+using WeatherService.Bots.Interfaces;
 
-namespace weather_monitoring_and_reporting_service.Bots.SnowBot;
+namespace WeatherService.Bots.SnowBot;
 public class SnowBotServiceCreator : BotServiceFactory
 {
     public override IWeatherBotService CreateBotService(string config)

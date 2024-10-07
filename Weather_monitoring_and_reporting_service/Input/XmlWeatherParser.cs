@@ -1,16 +1,30 @@
 ﻿using System.Xml.Serialization;
-using weather_monitoring_and_reporting_service.Core;
+using WeatherService.Core;
+using WeatherService.Utilities;
 
-namespace weather_monitoring_and_reporting_service.Input;
-public class XmlWeatherParser : IWeatherParserStrategy
+namespace WeatherService.Input
 {
-    public WeatherData? ParseWeatherData(string input)
+    public class XmlWeatherParser : IWeatherParserStrategy
     {
-        var serializer = new XmlSerializer(typeof(WeatherData));
-
-        using (TextReader reader = new StringReader(input))
+        public WeatherData? ParseWeatherData(string? input)
         {
-            return (WeatherData)serializer.Deserialize(reader);
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                throw new ArgumentNullException(ErrorMessages.InputIsNullOrEmpty);
+            }
+
+            try
+            {
+                var serializer = new XmlSerializer(typeof(WeatherData));
+                using (var reader = new StringReader(input)) 
+                {
+                    return (WeatherData?)serializer.Deserialize(reader);
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException($"{ErrorMessages.ErrorParsingXMLData}: {ex.Message}", ex);
+            }
         }
     }
 }

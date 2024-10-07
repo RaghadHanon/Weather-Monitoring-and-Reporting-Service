@@ -1,6 +1,6 @@
-﻿using weather_monitoring_and_reporting_service.Core;
+﻿using WeatherService.Core;
 
-namespace weather_monitoring_and_reporting_service.Input;
+namespace WeatherService.Input;
 public interface IWeatherParserStrategy
 {
     public WeatherData ParseWeatherData(string input);

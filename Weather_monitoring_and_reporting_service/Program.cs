@@ -1,9 +1,9 @@
-﻿using weather_monitoring_and_reporting_service.Bots.Configurations;
-using weather_monitoring_and_reporting_service.Core;
-using weather_monitoring_and_reporting_service.Utilities;
+﻿using WeatherService.Bots.Configurations;
+using WeatherService.Core;
+using WeatherService.Utilities;
 using weather_reporting_service.Input;
 
-namespace weather_monitoring_and_reporting_service;
+namespace WeatherService;
 public class Program
 {
     private BotsConfigurations _botsConfigurations;
@@ -79,7 +79,7 @@ public class Program
 
     private void SetWeatherParserStrategy(string weatherInput)
     {
-        var parserStrategy = WeatherParserFactory.GetParserStrategy(weatherInput);
+        var parserStrategy = new WeatherParserFactory().GetParserStrategy(weatherInput);
         _weatherDataProvider.SetParser(parserStrategy);
     }
 }

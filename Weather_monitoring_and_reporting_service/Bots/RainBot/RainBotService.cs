@@ -1,7 +1,7 @@
-﻿using weather_monitoring_and_reporting_service.Bots.Interfaces;
-using weather_monitoring_and_reporting_service.Core;
+﻿using WeatherService.Bots.Interfaces;
+using WeatherService.Core;
 
-namespace weather_monitoring_and_reporting_service.Bots.RainBot;
+namespace WeatherService.Bots.RainBot;
 public class RainBotService : IWeatherBotService
 {
     public RainBotService(RainBot bot)

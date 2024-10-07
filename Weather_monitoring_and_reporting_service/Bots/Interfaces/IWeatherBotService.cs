@@ -1,6 +1,6 @@
-﻿using weather_monitoring_and_reporting_service.Core;
+﻿using WeatherService.Core;
 
-namespace weather_monitoring_and_reporting_service.Bots.Interfaces;
+namespace WeatherService.Bots.Interfaces;
 public interface IWeatherBotService
 {
     IWeatherBot Bot { get; set; }

@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
-using weather_monitoring_and_reporting_service.Bots.Factories;
-using weather_monitoring_and_reporting_service.Bots.Interfaces;
-using weather_monitoring_and_reporting_service.Utilities;
+using WeatherService.Bots.Factories;
+using WeatherService.Bots.Interfaces;
+using WeatherService.Utilities;
 
-namespace weather_monitoring_and_reporting_service.Bots.Configurations;
+namespace WeatherService.Bots.Configurations;
 public class BotsConfigurations
 {
     private List<IWeatherBotService> _botsServices { get; set; } = new List<IWeatherBotService>();

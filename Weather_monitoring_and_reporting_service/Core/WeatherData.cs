@@ -1,4 +1,4 @@
-﻿namespace weather_monitoring_and_reporting_service.Core;
+﻿namespace WeatherService.Core;
 public class WeatherData
 {
     public WeatherData() { }

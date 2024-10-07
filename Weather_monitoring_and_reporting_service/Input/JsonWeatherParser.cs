@@ -1,17 +1,30 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using weather_monitoring_and_reporting_service.Core;
+using WeatherService.Core;
+using WeatherService.Utilities;
 
-namespace weather_monitoring_and_reporting_service.Input;
+namespace WeatherService.Input;
 public class JsonWeatherParser : IWeatherParserStrategy
 {
-    public WeatherData? ParseWeatherData(string input)
+    public WeatherData? ParseWeatherData(string? input)
     {
-        var options = new JsonSerializerOptions
+        if (string.IsNullOrWhiteSpace(input))
         {
-            PropertyNameCaseInsensitive = true,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        };
-        return JsonSerializer.Deserialize<WeatherData>(input, options);
+            throw new ArgumentNullException(ErrorMessages.InputIsNullOrEmpty);
+        }
+
+        try
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+            return JsonSerializer.Deserialize<WeatherData>(input, options);
+        }
+        catch (JsonException ex)
+        {
+            throw new InvalidOperationException($"{ErrorMessages.ErrorParsingJSONData}: {ex.Message}", ex);
+        }
     }
 }
