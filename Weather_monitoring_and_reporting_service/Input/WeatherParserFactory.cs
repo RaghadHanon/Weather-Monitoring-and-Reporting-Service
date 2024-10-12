@@ -4,7 +4,7 @@ using WeatherService.Utilities;
 namespace weather_reporting_service.Input;
 public class WeatherParserFactory
 {
-    public IWeatherParserStrategy GetParserStrategy(string weatherInput)
+    public IWeatherParserStrategy GetParser(string weatherInput)
     {
         if (weatherInput.StartsWith('{') || weatherInput.StartsWith('['))
             return new JsonWeatherParser();

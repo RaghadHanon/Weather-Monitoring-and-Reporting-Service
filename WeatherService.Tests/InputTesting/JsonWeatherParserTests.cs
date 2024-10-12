@@ -15,17 +15,16 @@ public class JsonWeatherParserTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
-    public void ParseWeatherData_WhenInputIsNullOrEmpty_ShouldThrowArgumentNullException(string input)
+    public void ParseWeatherData_ShouldThrowArgumentNullException_WhenInputIsNullOrEmpty(string input)
     {
         _sut.Invoking(x => x.ParseWeatherData(input))
             .Should().Throw<ArgumentNullException>();
     }
 
-    [Theory]
-    [InlineData("""{"Location": "City Name", "Temperature": 32, "Humidity": 40}""")]
-    public void ParseWeatherData_WhenInputIsValidJson_ShouldReturnWeatherData(string input)
+    [Fact]
+    public void ParseWeatherData_ShouldReturnWeatherData_WhenInputIsValidJSON()
     {
-        var result = _sut.ParseWeatherData(input);
+        var result = _sut.ParseWeatherData("""{"Location": "City Name", "Temperature": 32, "Humidity": 40}""");
 
         result.Should().NotBeNull();
         result.Location.Should().Be("City Name");
@@ -36,7 +35,7 @@ public class JsonWeatherParserTests
     [Theory]
     [InlineData("Invalid JSON")]
     [InlineData("""{ "Location": "City Name", "Temperature": "InvalidType", "Humidity": 40 }""")]
-    public void ParseWeatherData_WhenJsonIsMalformed_ShouldThrowInvalidOperationException(string input)
+    public void ParseWeatherData_ShouldThrowInvalidOperationException_WhenJSONIsMalformed(string input)
     {
         _sut.Invoking(x => x.ParseWeatherData(input))
             .Should().Throw<InvalidOperationException>()

@@ -79,7 +79,7 @@ public class Program
 
     private void SetWeatherParserStrategy(string weatherInput)
     {
-        var parserStrategy = new WeatherParserFactory().GetParserStrategy(weatherInput);
+        var parserStrategy = new WeatherParserFactory().GetParser(weatherInput);
         _weatherDataProvider.SetParser(parserStrategy);
     }
 }
